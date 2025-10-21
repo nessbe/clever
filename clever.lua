@@ -1,4 +1,4 @@
--- File:       premake5.lua
+-- File:       clever.lua
 -- Project:    clever
 -- Repository: https://github.com/nessbe/clever
 --
@@ -17,5 +17,31 @@
 --
 -- For more details, see the LICENSE file at the root of the project.
 
-include "workspace.lua"
-include "clever.lua"
+project "clever"
+	kind "StaticLib"
+
+	language "C++"
+	cppdialect "C++20"
+
+	targetdir("build/bin/%{cfg.system}/%{cfg.architecture}/%{cfg.buildcfg}/%{prj.name}")
+	objdir("build/obj/%{cfg.system}/%{cfg.architecture}/%{cfg.buildcfg}/%{prj.name}")
+
+	files {
+		"include/**.hpp",
+		"include/**.inl",
+		"source/**.cpp"
+	}
+
+	includedirs {
+		"include"
+	}
+
+	filter "configurations:debug"
+		defines "CLEVER_DEBUG"
+		runtime "Debug"
+		symbols "On"
+
+	filter "configurations:release"
+		defines "CLEVER_RELEASE"
+		runtime "Release"
+		optimize "On"
