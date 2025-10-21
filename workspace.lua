@@ -1,4 +1,4 @@
--- File:       premake5.lua
+-- File:       workspace.lua
 -- Project:    clever
 -- Repository: https://github.com/nessbe/clever
 --
@@ -17,4 +17,10 @@
 --
 -- For more details, see the LICENSE file at the root of the project.
 
-include "workspace.lua"
+workspace "clever"
+	architecture "x86_64"
+
+	configurations {
+		"debug",
+		"release"
+	}
