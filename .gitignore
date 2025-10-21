@@ -21,3 +21,6 @@ build/
 
 .vs/
 .vscode/
+
+Makefile
+*.make
